@@ -1,33 +1,20 @@
-**BigData Analysis Project - Weather** 
-
-This project will have you perform Data Analysis and processing using Apache Spark. 
-The Project will use the weather dataset from https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/ .
-This project will use only 16 years of data ( 2000 - 2018) for all the stations starting with US and elements TMAX, TMIN. 
-
-The following shell script is used to generate the dataset:  
-```
-for i in `seq 2000 2018`
-do  
-wget https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/${i}.csv.gz  
-gzip -cd ${i}.csv.gz  | grep -e TMIN -e TMAX | grep ^US > ${i}.csv  
-done 
-```
-
-The following information serves as a definition of each field in one line of data covering one station-day.  
-Each field   described below is separated by a comma ( , ) and follows the order presented in this document.  
-ID = 11 character station identification code  
-YEAR/MONTH/DAY = 8 character date in YYYYMMDD format (e.g. 19860529 = May 29, 1986) ELEMENT = 4 character indicator of element type  
-DATA VALUE = 5 character data value for ELEMENT  
-M-FLAG = 1 character Measurement Flag  
-Q-FLAG = 1 character Quality Flag  
-S-FLAG = 1 character Source Flag  
-OBS-TIME = 4-character time of observation in hour-minute format (i.e. 0700 =7:00 am)  
+**USA Names Analysis Project - Weather**  
   
-See section III of the GHCN-Daily ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt file for an explanation of ELEMENT   codes and their units as well as the M-FLAG, Q-FLAGS and S-FLAGS.  
-The OBS-TIME field is populated with the observation times contained in NOAA/NCDC’s Multinetwork Metadata System (MMS).  
+This project will have you perform Data Analysis and processing using Apache Spark.   
+The Project will use the weather dataset from https://www.ssa.gov/OACT/babynames/limits.html .  
+This project will use only the data of babynames (1910 - 2017) for all the states in the United States of America.   
   
-**In particular, it will have you build Apache Spark that yields the following analysis:**  
-1. Average TMIN, TMAX for each year excluding abnormalities or missing data  
-2. Maximum TMAX, Minimum TMIN for each year excluding abnormalities or missing data  
-3. 5 hottest , 5 coldest weather stations for each year excluding abnormalities or missing data  
-4. Hottest and coldest day and corresponding weather stations in the entire dataset  
+Each record in a file has the format:   
+2-digit state code,   
+sex (M = male or F = female),   
+4-digit year of birth (starting with 1910),   
+the 2-15 character name,   
+and the number of occurrences of the name.    
+
+Fields are delimited with a comma.   
+Each file is sorted first on sex, then year of birth, and then on number of occurrences in descending order. When there is a tie on the number of occurrences names are listed in alphabetical order. This sorting makes it easy to determine a name's rank. The first record for each sex & year of birth has rank 1, the second record has rank 2, and so forth.  
+    
+**In particular, it will have you build Apache Spark that yields the following analysis:**    
+1. Male, Female and Total Population of every state for the last five years.  
+2. Most Common Names, Most Common Female Names and Most Common Male Names in every state.    
+3. Male, Female and Total Population of entire country for the last five years.  
