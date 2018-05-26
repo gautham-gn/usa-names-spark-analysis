@@ -1,7 +1,7 @@
-**USA Names Analysis Project - Weather**  
+**USA Names Analysis Project**  
   
 This project will have you perform Data Analysis and processing using Apache Spark.   
-The Project will use the weather dataset from https://www.ssa.gov/OACT/babynames/limits.html .  
+The Project will use the dataset from https://www.ssa.gov/OACT/babynames/limits.html .  
 This project will use only the data of babynames (1910 - 2017) for all the states in the United States of America.   
   
 Each record in a file has the format:   
